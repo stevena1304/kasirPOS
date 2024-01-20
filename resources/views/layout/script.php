@@ -1,5 +1,7 @@
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
+<!-- Fontawesome -->
+<script src="https://kit.fontawesome.com/c640ba9bc8.js" crossorigin="anonymous"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
