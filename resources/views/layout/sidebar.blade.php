@@ -47,11 +47,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                    <a href="/product" class="nav-link">
+                        <i class="nav-icon fas fa-bag-shopping"></i>
                         <p>
-                            Widgets
-                            <span class="right badge badge-danger">New</span>
+                            Product
                         </p>
                     </a>
                 </li>
