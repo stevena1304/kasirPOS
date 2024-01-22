@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/product" class="nav-link">
+                    <a href="{{route('products.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-bag-shopping"></i>
                         <p>
                             Product
