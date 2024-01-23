@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = Category::all();
+
+        return response()->json($category);
     }
 
     /**
@@ -46,17 +50,23 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return response()->json($category);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $category->category = $request->category;
+        $category->save();
+
+        return redirect(route('products.index'));
     }
 
     /**
@@ -65,5 +75,21 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function hapus($id)
+    {
+        $category = Category::find($id);
+        $product = Product::where('category_id', '=', $id)->get();
+        if ($product->isNotEmpty()) {
+            foreach($product as $p) {
+                File::delete('./product/' . $p->foto);
+            }
+        }
+
+        $category->delete();
+        // return $product;
+
+        return redirect(route('products.index'));
     }
 }

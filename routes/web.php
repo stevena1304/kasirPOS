@@ -20,4 +20,6 @@ Route::get('/', function () {
 });
 
 Route::resource('products', ProductController::class);
+Route::get('/products/{products}/hapus', [ProductController::class, 'hapus'])->name('products.hapus');
 Route::resource('category', CategoryController::class);
+Route::get('/category/{category}/hapus', [CategoryController::class, 'hapus'])->name('category.hapus');
