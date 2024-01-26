@@ -27,6 +27,7 @@
                                         <th>Nama</th>
                                         <th>Category</th>
                                         <th>Harga</th>
+                                        <th>Barcode</th>
                                         <th>Foto</th>
                                         <th>Action</th>
                                     </thead>
@@ -34,7 +35,7 @@
                                     <tbody>
                                         @if ($product->isEmpty())
                                         <tr>
-                                            <td colspan="6" class="text-center"><h3>--Belum Ada Product--</h3></td>
+                                            <td colspan="7" class="text-center"><h3>--Belum Ada Product--</h3></td>
                                         </tr>
                                         @else
                                         @foreach ($product as $p)
@@ -42,12 +43,20 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $p->nama_produk }}</td>
                                                 <td>{{ $p->category->category }}</td>
-                                                <td>{{ $p->harga }}</td>
+                                                <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
+                                                <td>
+                                                    <div>
+                                                        {!! $p->barcode !!}
+                                                    </div>
+                                                    <div style="margin-left: 35px; font-family: 'Courier New', monospace;">
+                                                        {{$p->kode_produk}}
+                                                    </div>
+                                                </td>
                                                 <td><img src="{{ asset('product/' . $p->foto) }}" width="100px"></td>
                                                 <td>
                                                     <div class="row">
                                                         <div class="col-lg-3">
-                                                            <button class="btn btn-sm btn-warning edit-product" data-toggle="modal" data-target="#editProduct" data-id="{{ $p->id }}">Edit</button>
+                                                            <button class="btn btn-sm btn-warning edit-product mr-3" data-toggle="modal" data-target="#editProduct" data-id="{{ $p->id }}">Edit</button>
                                                         </div>
                                                         <div class="col-lg-3">
                                                             <form action="" id="deleteProductForm">

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Picqer\Barcode\BarcodeGeneratorHTML;
 
 class ProductController extends Controller
 {
@@ -30,9 +31,32 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    public function calculateEAN13Digit($data)
+    {
+        $sum = 0;
+
+        for ($i = 0; $i < 12; $i++) {
+            $digit = (int) $data[$i];
+            $sum += ($i % 2 === 0) ? $digit : $digit * 3;
+        }
+
+        $modulo = $sum % 10;
+        $checkDigit = ($modulo === 0) ? 0 : 10 - $modulo;
+
+        return $checkDigit;
+    }
+
     public function store(Request $request)
     {
         $product = new Product();
+
+        // Membuat barcode dengan data tertentu (contoh: nama produk)
+        $barcodeGenerator = new BarcodeGeneratorHTML();
+        $num = (string) mt_rand(100000000000, 999999999999);
+        // return $num;
+        $digitControl = $this->calculateEAN13Digit($num);
+        $fullBarcodeData = $num . $digitControl;
+        $barcode = $barcodeGenerator->getBarcode($fullBarcodeData, $barcodeGenerator::TYPE_EAN_13);
 
         //ambil info file
         $file = $request->file('foto');
@@ -46,6 +70,8 @@ class ProductController extends Controller
         $product->harga = $request->harga;
         $product->category_id = $request->category_id;
         $product->foto = $nama_file;
+        $product->barcode = $barcode;
+        $product->kode_produk = $fullBarcodeData;
 
         $product->save();
 
