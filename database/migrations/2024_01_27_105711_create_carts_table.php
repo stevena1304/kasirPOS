@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->text('barcode')->unique()->after('harga');
+        Schema::create('carts', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('qty');
+            $table->foreignId('products_id')->constrained('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('barcode');
-        });
+        Schema::dropIfExists('carts');
     }
 };

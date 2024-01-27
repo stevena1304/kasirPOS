@@ -68,6 +68,7 @@ class ProductController extends Controller
 
         $product->nama_produk = $request->nama_product;
         $product->harga = $request->harga;
+        $product->stok = $request->stok;
         $product->category_id = $request->category_id;
         $product->foto = $nama_file;
         $product->barcode = $barcode;
@@ -123,6 +124,7 @@ class ProductController extends Controller
 
         $product->nama_produk = $request->nama_product;
         $product->harga = $request->harga;
+        $product->stok = $request->stok;
         $product->category_id = $request->category_id;
         $product->save();
 

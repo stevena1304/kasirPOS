@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CashierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/{products}/hapus', [ProductController::class, 'hapus'])->name('products.hapus');
     Route::resource('category', CategoryController::class);
     Route::get('/category/{category}/hapus', [CategoryController::class, 'hapus'])->name('category.hapus');
+    Route::resource('cashier', CashierController::class);
 });

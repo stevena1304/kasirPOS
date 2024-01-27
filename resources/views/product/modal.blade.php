@@ -38,6 +38,10 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="stok">Jumlah Product : </label>
+                        <input class="form-control" required type="number" name="stok" id="stok">
+                    </div>
+                    <div class="form-group">
                         <label for="foto">Foto Product : </label>
                         <input class="form-control-file" required type="file" name="foto" id="foto">
                     </div>
@@ -87,6 +91,10 @@
                         <select class="form-select form-control" required name="category_id" id="edit_category_id">
 
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="stok">Jumlah Product : </label>
+                        <input class="form-control" required type="number" name="stok" id="edit_stok">
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto Product : </label>
@@ -253,6 +261,7 @@
                     // Set nilai pada modal berdasarkan data yang diterima
                     $('#edit_nama_product').val(data.nama_produk);
                     $('#edit_harga').val(data.harga);
+                    $('#edit_stok').val(data.stok);
                     $('#fotoPreview').attr('src', '/product/' + data.foto);
                     // Ganti action form untuk menyertakan ID produk yang akan diubah
                     $('#editProductForm').attr('action', '/products/' + productId);

@@ -15,6 +15,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nama_produk');
             $table->bigInteger('harga');
+            $table->bigInteger('stok');
+            $table->text('barcode');
+            $table->bigInteger('kode_produk');
             $table->string('foto');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

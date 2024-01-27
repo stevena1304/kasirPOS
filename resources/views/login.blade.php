@@ -12,6 +12,12 @@
 
     <link rel="stylesheet" href="login/css/style.css">
 
+    <style>
+        body {
+            background-color: grey;
+        }
+    </style>
+
 </head>
 
 <body>
